@@ -1,7 +1,4 @@
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +9,15 @@ import java.util.TreeSet;
  */
 public class SetIO {
 
+    public static void append(List<Integer> integers, String filePath) throws IOException {
+        Kattio kattio = new Kattio(System.in, new FileOutputStream("sortedFile.txt"));
+        for (Integer integer : integers) {
+
+            kattio.append(integer + "\n");
+        }
+        kattio.close();
+    }
+
     public static void write(Set<Integer> integers, String filePath) throws IOException {
         FileWriter writer = new FileWriter(filePath);
         for (Integer integer : integers) {
@@ -21,7 +27,7 @@ public class SetIO {
         writer.close();
     }
 
-    @Deprecated
+
     public static Bucket read(int numberOfInts, int bucketNumber, String filePath) throws IOException {
         Bucket bucket = new Bucket(0,bucketNumber);
         Kattio kattio = new Kattio(new FileInputStream(filePath));
@@ -35,7 +41,10 @@ public class SetIO {
         Bucket bucket = new Bucket(startLine,bucketNumber);
         Kattio kattio = new Kattio(new FileInputStream(filePath));
         for (int i = 0; i < startLine; i++) {
-            kattio.getInt();
+            if(kattio.hasMoreTokens())
+                kattio.getInt();
+            else
+                break;
         }
 
         for (int i = 0; i < numberOfInts; i++) {

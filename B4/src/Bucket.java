@@ -1,17 +1,15 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Taco on 2016-06-11.
  */
 public class Bucket extends ArrayList<Integer>{
     private int bucketNumber;
-    private int number;
+    private int fileNumber;
 
 
-    public Bucket(int number,int bucketNumber) {
-        this.number = number;
+    public Bucket(int fileNumber,int bucketNumber) {
+        this.fileNumber = fileNumber;
 
         this.bucketNumber = bucketNumber;
     }
@@ -20,12 +18,12 @@ public class Bucket extends ArrayList<Integer>{
         return bucketNumber;
     }
 
-    public int getNumber() {
-        return number;
+    public int getFileNumber() {
+        return fileNumber;
     }
 
     public void addOneToBucketNumber() {
-        number++;
+        fileNumber++;
     }
 
 
