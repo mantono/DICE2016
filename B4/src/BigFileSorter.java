@@ -12,7 +12,8 @@ import static javax.swing.text.html.HTML.Tag.HEAD;
  */
 public class BigFileSorter {
 
-    public static final int MAX_MEMORY = 1024 * 10;
+	public static final int KILOBYTE = 1024;
+    public static final int MAX_MEMORY = 10 * KILOBYTE;
     private final int amountOfLists, listSize, dataSize, intLimit;
     private PriorityQueue<Bucket> bucketQueue = new PriorityQueue<Bucket>(new ListSorter());
     private List<Integer> output = new ArrayList<>();
@@ -51,7 +52,7 @@ public class BigFileSorter {
             }
 
             if (bucket.isEmpty()) {
-                loadBucket(bucket);
+                bucket = loadBucket(bucket);
             }
 
             bucketQueue.add(bucket);

@@ -6,10 +6,11 @@ import java.nio.file.Paths;
  */
 public class B4Main {
     public static void main(String[] args) {
+    	final int size = 100_000;
         GenerateIntegers generateIntegers = new GenerateIntegers();
-        generateIntegers.generate();
+        generateIntegers.generate(size);
 
-        BigFileSorter bigFileSorter = new BigFileSorter(100_000);
+        BigFileSorter bigFileSorter = new BigFileSorter(size);
         try {
             bigFileSorter.sort(Paths.get("input.txt"));
         } catch (IOException e ) {

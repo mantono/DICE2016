@@ -10,11 +10,11 @@ import java.util.Random;
 public class GenerateIntegers {
 
 
-    public void generate() {
+    public void generate(int size) {
         try (FileWriter writer = new FileWriter("input.txt")){
             Random random = new Random();
             
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < size; i++) {
                 writer.write(random.nextInt(Integer.MAX_VALUE) + "\n");
             }
         } catch (IOException e) {
