@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 
+import static javax.swing.text.html.HTML.Tag.HEAD;
+
 /**
  * Created by Taco on 2016-06-11.
  */
@@ -29,7 +31,7 @@ public class BigFileSorter {
         mergeSort();
     }
 
-    //TODO mergeSort
+    // TODO mergeSort
     private void mergeSort() throws IOException {
         while (!bucketQueue.peek().isEmpty()) {
             Bucket bucket = bucketQueue.poll();
@@ -49,9 +51,10 @@ public class BigFileSorter {
         }
     }
 
+
     private Bucket loadBucket(Bucket bucket) throws IOException {
         if (bucket.currentLine() < intLimit) {
-            return SetIO.read(listSize, bucket ,bucket.getFileNumber() + ".txt");
+            return SetIO.read(listSize, bucket, bucket.getFileNumber() + ".txt");
         } else {
             return new Bucket(0);
         }
@@ -61,6 +64,7 @@ public class BigFileSorter {
 
         for (int j = 0; j < amountOfLists - 1; j++) {
 
+
             bucketQueue.add(SetIO.read(listSize, new Bucket(j), j + ".txt"));
         }
     }
@@ -68,13 +72,14 @@ public class BigFileSorter {
     private void readAndSortToFiles(Path path) throws IOException {
         Set<Integer> integers = new TreeSet<>();
 
-
         for (int i = 0; i < amountOfLists - 1; i++) {
 
-            integers.addAll(SetIO.createFiles(intLimit, i*intLimit, path.toString()));
+            integers.addAll(SetIO.createFiles(intLimit, i, path.toString()));
             SetIO.write(integers, i + ".txt");
             integers.clear();
         }
 
     }
+
+
 }
