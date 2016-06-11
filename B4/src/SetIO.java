@@ -10,12 +10,14 @@ import java.util.TreeSet;
 public class SetIO {
 
     public static void append(List<Integer> integers, String filePath) throws IOException {
-        Kattio kattio = new Kattio(System.in, new FileOutputStream("sortedFile.txt"));
+        PrintWriter pw = new PrintWriter(new FileOutputStream(
+                new File(filePath),
+                true ));
         for (Integer integer : integers) {
 
-            kattio.append(integer + "\n");
+            pw.append(integer + "\n");
         }
-        kattio.close();
+        pw.close();
     }
 
     public static void write(Set<Integer> integers, String filePath) throws IOException {

@@ -34,13 +34,16 @@ public class BigFileSorter {
         while (!bucketQueue.peek().isEmpty()) {
             Bucket bucket = bucketQueue.poll();
             output.add(bucket.remove(0));
+
             if (output.size() == listSize) {
                 SetIO.append(output, "SortedFile.txt");
                 output.clear();
             }
+
             if (bucket.isEmpty()) {
                 loadBucket(bucket);
             }
+
             bucketQueue.add(bucket);
 
         }
