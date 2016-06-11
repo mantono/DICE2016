@@ -50,7 +50,7 @@ public class BigFileSorter {
     }
 
     private Bucket loadBucket(Bucket bucket) throws IOException {
-        if (bucket.getFileNumber() > amountOfLists - 1) {
+        if (bucket.currentLine() < intLimit) {
             return SetIO.read(listSize, bucket ,bucket.getFileNumber() + ".txt");
         } else {
             return new Bucket(0);
@@ -61,7 +61,7 @@ public class BigFileSorter {
 
         for (int j = 0; j < amountOfLists - 1; j++) {
 
-            bucketQueue.add(SetIO.createFiles(listSize, j, j + ".txt"));
+            bucketQueue.add(SetIO.read(listSize, new Bucket(j), j + ".txt"));
         }
     }
 
@@ -71,7 +71,7 @@ public class BigFileSorter {
 
         for (int i = 0; i < amountOfLists - 1; i++) {
 
-            integers.addAll(SetIO.createFiles(intLimit, i, path.toString()));
+            integers.addAll(SetIO.createFiles(intLimit, i*intLimit, path.toString()));
             SetIO.write(integers, i + ".txt");
             integers.clear();
         }
