@@ -10,10 +10,18 @@ import java.util.*;
  */
 public class BigFileSorter {
 
+	public static final int MAX_MEMORY = 1024*10;
+	private final int amountOfLists, listSize, dataSize, intLimit;
     private PriorityQueue<Bucket> buckets = new PriorityQueue<Bucket>(new ListSorter());
     private List<Integer> output = new ArrayList<>();
 
-    public BigFileSorter() {
+    public BigFileSorter(final int dataSize) {
+    	this.dataSize = dataSize;
+    	this.intLimit = MAX_MEMORY/(Integer.SIZE/Byte.SIZE);
+    	final double lists = (dataSize/(double)intLimit);
+    	this.amountOfLists = (int) Math.ceil(lists)+1;
+    	System.out.println(amountOfLists);
+    	this.listSize = intLimit/amountOfLists;
         for (int i = 0; i < 9; i++) {
             buckets.add(new Bucket(0,i));
         }
@@ -53,7 +61,7 @@ public class BigFileSorter {
 
         for (int i = 0; i < 10; i++) {
 
-            integers.addAll(SetIO.read(10000,i*10000, path.toString()));
+            integers.addAll(SetIO.read(LIMIT,i*LIMIT, path.toString()));
             SetIO.write(integers, i + ".txt");
             integers.clear();
         }
