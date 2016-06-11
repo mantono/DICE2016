@@ -21,19 +21,19 @@ public class ListSorterTest {
 		first.add(1);
 		first.add(2);
 		first.add(3);
-		Bucket firstBucket = new Bucket(0,1,first);
+
 		assertEquals(4, first.size());
 		
 		second.add(2);
 		second.add(3);
 		second.add(4);
 		second.add(5);
-		Bucket secondBucket = new Bucket(0,1,second);
+
 		assertEquals(4, second.size());
 		
-		PriorityQueue<Bucket> queue = new PriorityQueue<Bucket>(new ListSorter());
-		queue.add(secondBucket);
-		queue.add(firstBucket);
+		PriorityQueue<List<Integer>> queue = new PriorityQueue<List<Integer>>(new ListSorter());
+		queue.add(second);
+		queue.add(first);
 		
 		assertEquals(2, queue.size());
 		
@@ -48,6 +48,21 @@ public class ListSorterTest {
 		
 		assertEquals(2, queue.size());
 		assertEquals(second, queue.peek());
+	}
+	
+	@Test
+	public void testEmptyIsLast()
+	{
+		List<Integer> first = new ArrayList<Integer>(4);
+		List<Integer> emptyList = new ArrayList<Integer>(4);
+
+		first.add(0);
+		
+		PriorityQueue<List<Integer>> queue = new PriorityQueue<List<Integer>>(new ListSorter());
+		queue.add(emptyList);
+		queue.add(first);
+		
+		assertEquals(first, queue.peek());
 	}
 
 }
