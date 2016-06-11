@@ -82,7 +82,7 @@ public class BigFileSorter {
 
         for (int i = 0; i < amountOfLists - 1; i++) {
 
-            integers.addAll(SetIO.createFiles(intLimit, i, path.toString()));
+            integers.addAll(SetIO.createFiles(intLimit, i*intLimit, path.toString()));
             SetIO.write(integers, i + ".txt");
             integers.clear();
         }
