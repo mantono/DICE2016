@@ -4,26 +4,33 @@ import java.util.ArrayList;
  * Created by Taco on 2016-06-11.
  */
 public class Bucket extends ArrayList<Integer>{
-    private int bucketNumber;
-    private int fileNumber;
+    private final int fileNumber;
+    private int currentLine = 0;
 
-
-    public Bucket(int fileNumber,int bucketNumber) {
+    public Bucket(int fileNumber) {
         this.fileNumber = fileNumber;
-
-        this.bucketNumber = bucketNumber;
     }
 
-    public int getBucketNumber(){
-        return bucketNumber;
-    }
+    public Bucket(Bucket bucket) {
+		this.fileNumber = bucket.fileNumber;
+		this.currentLine = bucket.currentLine;
+	}
 
-    public int getFileNumber() {
+	public int getFileNumber() {
         return fileNumber;
     }
-
-    public void addOneToBucketNumber() {
-        fileNumber++;
+    
+    public int currentLine()
+    {
+    	return currentLine;
+    }
+    
+    @Override
+    public boolean add(Integer index)
+    {
+    	if(super.add(index))
+    		currentLine++;
+    	return true;
     }
 
 

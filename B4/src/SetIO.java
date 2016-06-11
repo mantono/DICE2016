@@ -30,8 +30,9 @@ public class SetIO {
     }
 
 
-    public static Bucket read(int numberOfInts, int bucketNumber, String filePath) throws IOException {
-        Bucket bucket = new Bucket(0,bucketNumber);
+    public static Bucket createFiles(int numberOfInts, int fileNumber, String filePath) throws IOException {
+        Bucket bucket = new Bucket(
+        		fileNumber);
         Kattio kattio = new Kattio(new FileInputStream(filePath));
         for (int i = 0; i < numberOfInts; i++) {
             bucket.add(kattio.getInt());
@@ -39,10 +40,9 @@ public class SetIO {
         return bucket;
     }
 
-    public static Bucket read(int numberOfInts, int startLine, int bucketNumber, String filePath) throws IOException {
-        Bucket bucket = new Bucket(startLine,bucketNumber);
+    public static Bucket read(int numberOfInts, Bucket bucket, String filePath) throws IOException {
         Kattio kattio = new Kattio(new FileInputStream(filePath));
-        for (int i = 0; i < startLine; i++) {
+        for (int i = 0; i < bucket.currentLine(); i++) {
             if(kattio.hasMoreTokens())
                 kattio.getInt();
             else
