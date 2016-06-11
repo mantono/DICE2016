@@ -15,24 +15,25 @@ public class ListSorterTest {
 	{
 		List<Integer> first = new ArrayList<Integer>(4);
 		List<Integer> second = new ArrayList<Integer>(4);
-		
+
+
 		first.add(0);
 		first.add(1);
 		first.add(2);
 		first.add(3);
-		
+		Bucket firstBucket = new Bucket(0,1,first);
 		assertEquals(4, first.size());
 		
 		second.add(2);
 		second.add(3);
 		second.add(4);
 		second.add(5);
-		
+		Bucket secondBucket = new Bucket(0,1,second);
 		assertEquals(4, second.size());
 		
-		PriorityQueue<List<Integer>> queue = new PriorityQueue<List<Integer>>(new ListSorter());
-		queue.add(second);
-		queue.add(first);
+		PriorityQueue<Bucket> queue = new PriorityQueue<Bucket>(new ListSorter());
+		queue.add(secondBucket);
+		queue.add(firstBucket);
 		
 		assertEquals(2, queue.size());
 		
