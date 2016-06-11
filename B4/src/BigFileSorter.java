@@ -13,7 +13,7 @@ import static javax.swing.text.html.HTML.Tag.HEAD;
 public class BigFileSorter {
 
 	public static final int KILOBYTE = 1024;
-    public static final int MAX_MEMORY = 10 * KILOBYTE;
+    public static final int MAX_MEMORY = 10* KILOBYTE;
     private final int amountOfLists, listSize, dataSize, intLimit;
     private PriorityQueue<Bucket> bucketQueue = new PriorityQueue<Bucket>(new ListSorter());
     private List<Integer> output = new ArrayList<>();
@@ -58,6 +58,8 @@ public class BigFileSorter {
             bucketQueue.add(bucket);
 
         }
+        
+        SetIO.append(output, "SortedFile.txt");
     }
 
 
