@@ -21,6 +21,7 @@ public class SetIO {
         writer.close();
     }
 
+    @Deprecated
     public static Bucket read(int numberOfInts, int bucketNumber, String filePath) throws IOException {
         Bucket bucket = new Bucket(0,bucketNumber);
         Kattio kattio = new Kattio(new FileInputStream(filePath));
@@ -38,7 +39,10 @@ public class SetIO {
         }
 
         for (int i = 0; i < numberOfInts; i++) {
-            bucket.add(kattio.getInt());
+        	if(kattio.hasMoreTokens())
+        		bucket.add(kattio.getInt());
+        	else
+        		break;
         }
         return bucket;
     }

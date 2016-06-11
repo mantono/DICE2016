@@ -9,7 +9,7 @@ public class B4Main {
         GenerateIntegers generateIntegers = new GenerateIntegers();
         generateIntegers.generate();
 
-        BigFileSorter bigFileSorter = new BigFileSorter();
+        BigFileSorter bigFileSorter = new BigFileSorter(100_000);
         try {
             bigFileSorter.sort(Paths.get("output.txt"));
         } catch (IOException e ) {
