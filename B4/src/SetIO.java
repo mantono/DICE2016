@@ -21,25 +21,25 @@ public class SetIO {
         writer.close();
     }
 
-    public static List<Integer> read(int numberOfInts, String filePath) throws IOException {
-        List<Integer> ret = new ArrayList<>();
+    public static Bucket read(int numberOfInts, int bucketNumber, String filePath) throws IOException {
+        Bucket bucket = new Bucket(0,bucketNumber);
         Kattio kattio = new Kattio(new FileInputStream(filePath));
         for (int i = 0; i < numberOfInts; i++) {
-            ret.add(kattio.getInt());
+            bucket.add(kattio.getInt());
         }
-        return ret;
+        return bucket;
     }
 
-    public static List<Integer> read(int numberOfInts, int startLine, String filePath) throws IOException {
-        List<Integer> ret = new ArrayList<>();
+    public static Bucket read(int numberOfInts, int startLine, int bucketNumber, String filePath) throws IOException {
+        Bucket bucket = new Bucket(startLine,bucketNumber);
         Kattio kattio = new Kattio(new FileInputStream(filePath));
         for (int i = 0; i < startLine; i++) {
             kattio.getInt();
         }
 
         for (int i = 0; i < numberOfInts; i++) {
-            ret.add(kattio.getInt());
+            bucket.add(kattio.getInt());
         }
-        return ret;
+        return bucket;
     }
 }

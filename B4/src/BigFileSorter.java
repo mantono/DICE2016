@@ -1,3 +1,5 @@
+import dice.b4.ListSorter;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -32,26 +34,26 @@ public class BigFileSorter {
 
     private Bucket loadBucket(Bucket bucket) throws IOException {
 
-        bucket.addOneToBucketNumber();
-        List<Integer> next1000Integers = SetIO.read(1000, bucket.getNumber() * 1000, bucket.getBucketNumber() + ".txt");
-        bucket.addAllnext1000Integers;
-        return bucket;
+
+        return SetIO.read(1000,  bucket.getNumber() * 1000,bucket.getBucketNumber(), bucket.getBucketNumber() + ".txt");
+
+
     }
 
     private void initBuckets() throws IOException {
         int i = 0;
         for (Bucket bucket : buckets) {
-            bucket.setIntegers(SetIO.read(1000, i + ".txt"));
+            bucket = SetIO.read(1000,i,i + ".txt");
         }
     }
 
     private void readAndSortToFiles(Path path) throws IOException {
         Set<Integer> integers = new TreeSet<>();
 
-        Kattio kattio = new Kattio(new FileInputStream(path.toString()));
+
         for (int i = 0; i < 10; i++) {
 
-            integers.addAll(SetIO.read(10000,i*10000, "output.txt"));
+            integers.addAll(SetIO.read(10000,i*10000, path.toString()));
             SetIO.write(integers, i + ".txt");
             integers.clear();
         }
