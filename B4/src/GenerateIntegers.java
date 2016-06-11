@@ -11,13 +11,12 @@ public class GenerateIntegers {
 
 
     public void generate() {
-        try {
+        try (FileWriter writer = new FileWriter("output.txt")){
             Random random = new Random();
-            FileWriter writer = new FileWriter("output.txt");
+            
             for (int i = 0; i < 100000; i++) {
                 writer.write(random.nextInt(Integer.MAX_VALUE) + "\n");
             }
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
