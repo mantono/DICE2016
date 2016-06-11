@@ -11,7 +11,7 @@ public class B4Main {
 
         BigFileSorter bigFileSorter = new BigFileSorter(100_000);
         try {
-            bigFileSorter.sort(Paths.get("output.txt"));
+            bigFileSorter.sort(Paths.get("input.txt"));
         } catch (IOException e ) {
             e.printStackTrace();
         }

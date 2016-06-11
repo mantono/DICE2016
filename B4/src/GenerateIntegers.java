@@ -11,7 +11,7 @@ public class GenerateIntegers {
 
 
     public void generate() {
-        try (FileWriter writer = new FileWriter("output.txt")){
+        try (FileWriter writer = new FileWriter("input.txt")){
             Random random = new Random();
             
             for (int i = 0; i < 100000; i++) {

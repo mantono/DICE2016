@@ -1,5 +1,6 @@
 import dice.b4.ListSorter;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
@@ -26,12 +27,19 @@ public class BigFileSorter {
     }
 
     public void sort(Path path) throws IOException {
+    	deleteFileIfPresent(new File("SortedFile.txt"));
         readAndSortToFiles(path);
         initBuckets();
         mergeSort();
     }
 
-    // TODO mergeSort
+    private void deleteFileIfPresent(File file) {
+		if(file.exists())
+			if(!file.delete())
+				System.exit(1);
+	}
+
+	// TODO mergeSort
     private void mergeSort() throws IOException {
         while (!bucketQueue.peek().isEmpty()) {
             Bucket bucket = bucketQueue.poll();
